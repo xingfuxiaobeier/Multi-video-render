@@ -1,0 +1,59 @@
+ varying highp vec2 vTextureCoord;
+ uniform highp vec2 leftBottom;
+ uniform highp vec2 rightTop;
+ uniform highp vec2 leftTop;
+ uniform highp vec2 rightBottom;
+ //uniform mediump mat3 colorConversionMatrix;
+ uniform lowp sampler2D myTexture1;
+
+highp float getline_Y(in highp vec2 postion,in  highp vec2 in1,in  highp vec2 in2)
+ {
+     highp float k1=(in1.y-in2.y)/(in1.x-in2.x);
+     highp float b1=in1.y-k1*in1.x;
+     highp float l1=k1*postion.x+b1;
+     return l1;
+ }
+
+ highp float getline_X(in highp vec2 postion,in highp vec2 in1,in highp vec2 in2)
+ {
+     highp float k1=(in1.y-in2.y)/(in1.x-in2.x);
+     highp float b1=in1.y-k1*in1.x;
+     highp float l1=(postion.y-b1)/k1;
+     return l1;
+ }
+int isUsePastePicture(in highp vec2 postion)
+ {
+     highp float l1 = getline_Y(postion,rightTop,leftTop);
+     if(l1<postion.y)
+         return 0;
+     highp float l3= getline_Y(postion,rightBottom,leftBottom);
+     if(l3>postion.y)
+         return 0;
+     highp float l4=getline_X(postion,leftTop,leftBottom);
+     if(postion.x<l4)
+         return 0;
+     highp float l2=getline_X(postion,rightTop,rightBottom);
+     if(postion.x>l2)
+         return 0;
+      return 1;
+ }
+
+ void main()
+ {
+
+     if(isUsePastePicture(vTextureCoord) == 1)
+     {
+         highp float leftx=getline_X(vTextureCoord,leftBottom,leftTop);
+         highp float topy=getline_Y(vTextureCoord,rightTop,leftTop);
+         highp float rightx=getline_X(vTextureCoord,rightTop,rightBottom);
+         highp float bottomy=getline_Y(vTextureCoord,rightBottom,leftBottom);
+         lowp vec2 test = vec2((vTextureCoord.x - leftx) / (rightx - leftx),  (vTextureCoord.y - bottomy) / (topy - bottomy));
+//         lowp vec2 test = vec2(0.5, 0.5) + (vTextureCoord.xy - vec2(0.5, 0.5)) * 2.0;
+         gl_FragColor = texture2D(myTexture1, test);
+     }
+//     else
+//     {
+ //        gl_FragColor = vec4(0,0,0, 1);
+//         gl_FragColor = texture2D(myTexture1, vTextureCoord);
+//     }
+ }

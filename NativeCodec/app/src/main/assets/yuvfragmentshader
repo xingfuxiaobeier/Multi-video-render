@@ -1,0 +1,30 @@
+    precision highp float;
+    varying   highp vec2 textureCoordinate;
+    uniform         mat3 um3_ColorConversion;
+    uniform   lowp  sampler2D inputImageTexture;
+    uniform   lowp  sampler2D inputImageTexture2;
+    uniform   lowp  sampler2D inputImageTexture3;
+
+    void main()
+    {
+        mediump vec3 yuv;
+        lowp    vec3 rgb;
+
+        yuv.x = (texture2D(inputImageTexture, textureCoordinate).r - (16.0 / 255.0));
+        yuv.y = (texture2D(inputImageTexture2, textureCoordinate).r - 0.5);
+        yuv.z = (texture2D(inputImageTexture3, textureCoordinate).r - 0.5);
+
+        rgb =  um3_ColorConversion * yuv;
+        if (rgb.x >= 0.0 ) {
+            rgb.x = 1.0;
+        }
+        if (rgb.y >= 0.0) {
+            rgb.y = 1.0;
+        }
+        if (rgb.z >= 0.0) {
+            rgb.z = 1.0;
+        }
+
+        gl_FragColor = vec4(rgb, 1);
+        //gl_FragColor = texture2D(inputImageTexture, textureCoordinate);
+    }

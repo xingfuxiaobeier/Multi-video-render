@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+    >
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="8dip"-->
+        <!--android:orientation="horizontal"-->
+        <!--&gt;-->
+
+        <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/source_select"-->
+            <!--/>-->
+
+        <!--<Spinner-->
+            <!--android:id="@+id/source_spinner"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/source_prompt"-->
+            <!--/>-->
+    <!--</LinearLayout>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80px">-->
+
+        <!--<SeekBar-->
+            <!--android:id="@+id/progressbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="20px">-->
+
+        <!--</SeekBar>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/duration"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_below="@id/progressbar"-->
+            <!--android:text="duration"/>-->
+    <!--</RelativeLayout>-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dip"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/start_native"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/start_native"
+            />
+
+        <Button
+            android:id="@+id/rewind_native"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rewind_native"
+            />
+        <Button
+            android:id="@+id/get_frame"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/frame_native"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dip"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dip"
+            android:orientation="horizontal"
+            >
+
+            <RadioButton
+                android:id="@+id/radio1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                />
+
+            <SurfaceView
+                android:id="@+id/surfaceview1"
+                android:layout_width="272px"
+                android:layout_height="484px"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dip"
+            android:orientation="horizontal"
+            >
+
+            <RadioButton
+                android:id="@+id/radio3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                />
+
+            <com.example.nativecodec.ImageGLSurfaceView
+                android:id="@+id/glsurfaceview2"
+                android:layout_width="272px"
+                android:layout_height="484px"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dip"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            />
+
+        <com.example.nativecodec.MyGLSurfaceView
+            android:id="@+id/glsurfaceview1"
+            android:layout_width="544px"
+            android:layout_height="968px"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
